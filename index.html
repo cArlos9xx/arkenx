@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Arken X — uma nova marca tecnológica construída para uma nova era. Inteligência × Tecnologia × Futuro × Escala.">
+<title>Arken X — Brand Reveal</title>
+<style>
+  :root{
+    --black:#050208;
+    --ink:#0A0710;
+    --panel:#100B18;
+    --graphite:#191225;
+    --steel:#241A33;
+    --white:#F5F2FB;
+    --gray:#B0A6C8;
+    --muted:#6E6283;
+    --violet:#7B5CFF;
+    --violet-2:#A18BFF;
+    --magenta:#FF3D9A;
+    --pink:#FF6BB5;
+    --line:#221A31;
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:'Segoe UI',-apple-system,Helvetica,Arial,sans-serif;
+    --mono:'Consolas','SF Mono',ui-monospace,monospace;
+    --grad:linear-gradient(120deg,#7B5CFF,#FF3D9A);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--white);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+  ::selection{background:rgba(255,61,154,0.25)}
+
+  /* ============ FUNDO: FEIXES DE LUZ LATERAIS + FLUXO HORIZONTAL ============ */
+  .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.04;
+    background-image:radial-gradient(rgba(255,255,255,0.6) 0.5px,transparent 0.5px);background-size:2px 2px}
+  .void{position:fixed;inset:0;z-index:2;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 0%,transparent 30%,rgba(0,0,0,0.7) 100%)}
+
+  /* aurora violeta-magenta */
+  .aurora{position:fixed;inset:-30%;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.34;
+    background:
+      radial-gradient(40% 40% at 20% 30%,rgba(123,92,255,0.26),transparent 60%),
+      radial-gradient(40% 40% at 78% 62%,rgba(255,61,154,0.16),transparent 60%),
+      radial-gradient(30% 30% at 55% 85%,rgba(255,107,181,0.12),transparent 60%);
+    animation:auroraMove 26s ease-in-out infinite alternate;filter:blur(60px)}
+  @keyframes auroraMove{
+    0%{transform:translate3d(-4%,-2%,0) rotate(0deg)}
+    50%{transform:translate3d(4%,3%,0) rotate(6deg)}
+    100%{transform:translate3d(-3%,4%,0) rotate(-4deg)}}
+
+  /* FEIXES DE LUZ QUE ATRAVESSAM DE UM LADO PARA O OUTRO */
+  .beam{position:fixed;z-index:4;pointer-events:none;mix-blend-mode:screen;transform:rotate(18deg)}
+  .beam.b1{top:18%;height:2px;width:46vw;background:linear-gradient(90deg,transparent,rgba(123,92,255,0.55),rgba(255,61,154,0.4),transparent);
+    animation:beamSlide 9s cubic-bezier(.4,0,.6,1) infinite;animation-delay:0s}
+  .beam.b2{top:46%;height:2px;width:52vw;background:linear-gradient(90deg,transparent,rgba(255,61,154,0.5),rgba(255,107,181,0.35),transparent);
+    animation:beamSlide 13s cubic-bezier(.4,0,.6,1) infinite;animation-delay:-4s}
+  .beam.b3{top:70%;height:2px;width:42vw;background:linear-gradient(90deg,transparent,rgba(123,92,255,0.45),rgba(161,139,255,0.35),transparent);
+    animation:beamSlide 17s linear infinite;animation-delay:-9s}
+  .beam.b4{top:88%;height:1px;width:60vw;background:linear-gradient(90deg,transparent,rgba(255,61,154,0.4),rgba(123,92,255,0.3),transparent);
+    animation:beamSlide 21s linear infinite;animation-delay:-14s}
+  @keyframes beamSlide{0%{left:-55vw;opacity:0}8%{opacity:.7}92%{opacity:.7}100%{left:115vw;opacity:0}}
+
+  /* grade de horizonte futurista deslizando */
+  .hdash{position:fixed;left:0;right:0;height:1px;z-index:3;pointer-events:none;opacity:.18;
+    background:repeating-linear-gradient(90deg,rgba(161,139,255,0.7) 0 26px,transparent 26px 64px);
+    animation:dashX 22s linear infinite}
+  .hdash.d1{top:30%;animation-duration:26s}
+  .hdash.d2{top:58%;animation-duration:20s}
+  .hdash.d3{top:74%;animation-duration:32s}
+  @keyframes dashX{from{transform:translateX(0)}to{transform:translateX(64px)}}
+
+  #flow{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:1}
+
+  .wrap{position:relative;z-index:5}
+
+  /* ============ NAV ============ */
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:22px 44px;background:rgba(0,0,0,0.6);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transform:translateY(-100%);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+  nav.show{transform:translateY(0)}
+  .nav-brand{font-weight:800;letter-spacing:1px;font-size:1.02rem}
+  .nav-brand .x{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic}
+  .nav-links{display:flex;gap:26px}
+  .nav-links a{color:var(--gray);text-decoration:none;font-size:0.74rem;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+  .nav-links a:hover{color:var(--white)}
+
+  section{min-height:100vh;display:flex;align-items:center;padding:120px 6vw;position:relative}
+  .container{max-width:1180px;margin:0 auto;width:100%}
+
+  .kick{font-size:0.72rem;letter-spacing:5px;text-transform:uppercase;color:var(--violet-2);font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:12px}
+  .kick::before{content:'';width:28px;height:1px;background:var(--magenta)}
+
+  h1.feat{font-size:clamp(2.4rem,6.5vw,5rem);font-weight:800;letter-spacing:-2px;line-height:1.05}
+  h1.feat .x{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic}
+  h2.sec{font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:18px}
+  .lead{color:var(--gray);font-size:clamp(1rem,1.8vw,1.3rem);font-weight:300;max-width:640px}
+  .muted{color:var(--muted)}
+
+  /* ============ ARCO / PORTAL HERO ============ */
+  .portal{width:210px;height:210px;margin:26px auto 0;opacity:0;transform:scale(.85);transition:opacity 1s ease,transform 1.3s cubic-bezier(.16,1,.3,1)}
+  .portal.show{opacity:1;transform:scale(1)}
+  .portal svg{width:100%;height:100%;overflow:visible}
+
+  /* ============ LETTER REVEAL ============ */
+  .lr{display:inline-block;opacity:0;transform:translateY(24px) rotateX(60deg);transform-origin:bottom}
+  .lrin .lr{animation:lrin .7s cubic-bezier(.22,1,.36,1) forwards}
+  @keyframes lrin{to{opacity:1;transform:translateY(0) rotateX(0)}}
+
+  .rv{opacity:0;transform:translateY(34px) scale(.985);filter:blur(10px);transition:opacity 1s ease,transform 1.1s cubic-bezier(.16,1,.3,1),filter 1.1s ease}
+  .rv.on,.on .rv{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+  .rv.stagger{transition-delay:.12s}
+  .rv.stagger2{transition-delay:.24s}
+  .rv.stagger3{transition-delay:.36s}
+
+  .typebar{font-family:var(--mono);font-size:0.8rem;color:var(--violet-2);letter-spacing:2px;margin-top:26px;display:inline-block;min-height:1.2em}
+  .typebar .cr{display:inline-block;width:2px;height:1em;background:var(--magenta);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(2) infinite}
+  @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+
+  .rule{height:1px;background:var(--line);width:100%;margin:40px 0}
+  .btn{border:1px solid var(--line);padding:16px 40px;border-radius:60px;color:var(--white);text-decoration:none;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;display:inline-block;transition:border-color .2s,box-shadow .2s,transform .2s}
+  .btn:hover{border-color:var(--violet-2);transform:translateY(-2px);box-shadow:0 10px 30px rgba(123,92,255,0.25)}
+  .btn.ghost{color:var(--gray)}
+
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:820px){.grid2,.grid3{grid-template-columns:1fr}}
+  .pillar{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px;position:relative;overflow:hidden;transition:border-color .3s}
+  .pillar:hover{border-color:var(--violet-2)}
+  .pillar .num{font-family:var(--mono);font-size:0.7rem;color:var(--violet-2);letter-spacing:2px;margin-bottom:16px}
+  .pillar h3{font-size:1.05rem;letter-spacing:1px;margin-bottom:8px;text-transform:uppercase}
+  .pillar p{color:var(--gray);font-size:0.9rem}
+  .pillar::after{content:'';position:absolute;left:0;top:0;height:100%;width:2px;background:var(--grad);opacity:0;transition:opacity .3s}
+  .pillar:hover::after{opacity:1}
+
+  /* cartão de razão social + CNPJ */
+  .rgcard{position:relative;max-width:620px;margin:34px auto 0;background:linear-gradient(160deg,#141019,#0C0910);border:1px solid var(--line);border-radius:18px;padding:34px 38px;text-align:left;overflow:hidden}
+  .rgcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad)}
+  .rgcard::after{content:'ARKEN';position:absolute;right:-20px;bottom:-30px;font-weight:800;font-size:7rem;letter-spacing:-3px;color:rgba(255,255,255,0.03);pointer-events:none}
+  .rgcard-top{position:relative;display:flex;flex-direction:column;gap:6px}
+  .rgchip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:0.66rem;letter-spacing:3px;color:var(--magenta);text-transform:uppercase;margin-bottom:6px}
+  .rgchip::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--magenta);box-shadow:0 0 10px var(--magenta)}
+  .rg-nome{font-family:var(--mono);font-size:0.82rem;letter-spacing:2px;color:var(--white)}
+  .rg-fantasia{font-family:var(--mono);font-size:0.72rem;letter-spacing:1px;color:var(--muted);font-style:italic}
+  .rg-num{position:relative;display:flex;gap:1px;align-items:center;margin-top:22px;padding-top:20px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:clamp(1.15rem,3.4vw,1.7rem);letter-spacing:1px;color:var(--violet-2)}
+  .rg-num span{animation:rgNumIn 1s cubic-bezier(.22,1,.36,1) both}
+  @keyframes rgNumIn{from{opacity:0;transform:translateY(8px)}}
+
+  /* anatomia do nome */
+  .anatom{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .anatom .let{width:86px;min-height:120px;background:var(--panel);border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px;text-align:center;transition:border-color .3s,transform .3s}
+  .anatom .let:hover{border-color:var(--magenta);transform:translateY(-4px)}
+  .anatom .let .char{font-size:1.9rem;font-weight:800}
+  .anatom .let .word{font-size:0.56rem;letter-spacing:1px;color:var(--violet-2);text-transform:uppercase;font-weight:700;line-height:1.3}
+
+  .extend{display:flex;flex-direction:column;gap:0}
+  .extend .row{display:flex;align-items:center;justify-content:space-between;padding:18px 6px;border-bottom:1px solid var(--line);opacity:0;transform:translateX(-24px);transition:opacity .7s ease,transform .7s ease}
+  .extend .row .tag{font-family:var(--mono);color:var(--violet-2)}
+
+  .stack{display:flex;flex-direction:column;align-items:center;gap:2px}
+  .stack .node{width:min(560px,90vw);text-align:center;padding:20px;border:1px solid var(--line);background:var(--panel);border-radius:10px;letter-spacing:4px;text-transform:uppercase;font-size:0.95rem;font-weight:600;position:relative}
+  .stack .node:not(:last-child)::after{content:'↓';position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);color:var(--violet-2);font-size:0.9rem}
+  .stack .node.hl{background:var(--grad);color:var(--black);border:none;font-weight:800}
+
+  .dna{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:820px){.dna{grid-template-columns:1fr}}
+  .dna .item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:34px 20px;text-align:center;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;font-weight:300;transition:border-color .3s}
+  .dna .item:hover{border-color:var(--violet-2)}
+
+  .manifesto{max-width:880px}
+  .manifesto h2{font-size:clamp(2rem,5vw,3.6rem);font-weight:300;line-height:1.25;letter-spacing:-1px;margin-bottom:30px}
+  .manifesto h2 strong{font-weight:800}
+  .manifesto .lang{color:var(--muted);font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;margin-top:26px}
+
+  /* logos */
+  .logos{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:920px){.logos{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.logos{grid-template-columns:1fr}}
+  .logocard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:30px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:150px;gap:12px;transition:border-color .3s}
+  .logocard:hover{border-color:var(--violet-2)}
+  .logocard .l1{font-size:1.5rem;font-weight:800;letter-spacing:-0.5px}
+  .logocard .l1 .x{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic}
+  .logocard .l2{font-family:var(--serif);font-size:1.3rem;font-style:italic;font-weight:600}
+  .logocard .l2 .x{color:var(--violet-2)}
+  .logocard .l3{font-size:1.15rem;font-weight:800;letter-spacing:5px;text-transform:uppercase}
+  .logocard .l3 .x{color:var(--magenta)}
+  .logocard .l4{font-size:1.4rem;font-weight:300;letter-spacing:2px}
+  .logocard .l4 .x{font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .logocard .l5{font-size:1.55rem;font-weight:800;letter-spacing:8px}
+  .logocard .l5 .x{color:var(--violet-2)}
+  .logocard .mono{width:56px;height:56px;font-size:1.5rem;font-weight:800;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--violet-2);border-radius:12px;color:var(--violet-2)}
+  .logocard .mono2{width:56px;height:56px;font-size:1.5rem;font-weight:800;display:flex;align-items:center;justify-content:center;background:var(--grad);color:var(--black);border-radius:12px}
+  .logocard .cap{font-size:0.62rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px}
+  .logocard .ng{font-size:1.3rem;font-weight:800;letter-spacing:0.5px}
+  .logocard .ng{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .logocard .nc{padding:6px 14px;font-size:1rem;font-weight:800;letter-spacing:1px;border:1.5px solid var(--violet-2);border-radius:6px}
+  .logocard .nc .x{color:var(--magenta)}
+  .logocard .ncircle{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--violet-2);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(123,92,255,0.35)}
+  .logocard .ncircle .x{font-size:1.2rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic}
+  .logocard .nchar{font-size:1.5rem;font-weight:800;letter-spacing:6px}
+  .logocard .nchar .x{color:var(--violet-2)}
+  .concepts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+  @media(max-width:920px){.concepts{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.concepts{grid-template-columns:1fr}}
+  .concept{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;transition:border-color .3s,transform .4s}
+  .concept:hover{border-color:var(--violet-2);transform:translateY(-4px)}
+  .cglyph{width:100%;max-width:110px;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+  .cglyph svg{width:100%;height:100%}
+  .cname{font-family:var(--mono);font-size:0.7rem;color:var(--magenta);letter-spacing:3px}
+  .cdesc{font-size:0.8rem;color:var(--gray);line-height:1.55}
+
+  /* símbolo */
+  .symbol{display:flex;align-items:center;justify-content:center;gap:60px;flex-wrap:wrap}
+  .symbol .glyph{width:220px;height:220px;position:relative}
+  .symbol svg{width:100%;height:100%;overflow:visible}
+
+  /* ecossistema — arquitetura horizontal (SEM órbitas) */
+  .eco{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+  @media(max-width:920px){.eco{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.eco{grid-template-columns:1fr}}
+  .eco .mod{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px 18px;text-align:center;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+  .eco .mod:hover{border-color:var(--magenta);transform:translateY(-4px)}
+  .eco .mod .mi{font-size:1.7rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .eco .mod .mn{font-size:0.72rem;letter-spacing:3px;color:var(--gray);text-transform:uppercase;margin-top:8px;font-weight:700}
+  .eco .mod::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .eco .mod:hover::after{transform:scaleX(1)}
+
+  /* mapa global */
+  .mapwrap{position:relative;border:1px solid var(--line);border-radius:18px;padding:20px;background:var(--panel);overflow:hidden}
+  .mapwrap svg{width:100%;height:auto;display:block}
+  .gsteps{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
+  .gsteps span{font-family:var(--mono);font-size:0.78rem;color:var(--gray);letter-spacing:1px;border:1px solid var(--line);padding:8px 16px;border-radius:30px;opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+  .gsteps span::after{content:' →';color:var(--violet-2)}
+  .gsteps span:last-child::after{content:''}
+  .gsteps span.on{opacity:1;transform:none}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:820px){.two{grid-template-columns:1fr}}
+  .two .col{border:1px solid var(--line);border-radius:14px;padding:30px}
+  .two .no{border-color:rgba(255,80,80,0.25)}
+  .two .yes{border-color:rgba(161,139,255,0.35)}
+  .two h3{font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px}
+  .two .no h3{color:#E46A6A}
+  .two .yes h3{color:var(--violet-2)}
+  .two ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .two li{color:var(--gray);font-size:0.98rem;display:flex;gap:12px;align-items:center}
+  .two .no li::before{content:'✕';color:#E46A6A}
+  .two .yes li::before{content:'✓';color:var(--magenta)}
+
+  .voice{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:820px){.voice{grid-template-columns:1fr}}
+  .voice .v{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px;font-size:0.92rem;color:var(--gray)}
+  .voice .v .who{color:var(--violet-2);font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;font-weight:700;font-family:var(--mono)}
+
+  .slogcat{margin-bottom:40px}
+  .slogcat .cat{font-size:0.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--violet-2);margin-bottom:16px;font-weight:700}
+  .slogcat .items{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .slogcat .slog{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px;font-size:1.15rem;font-weight:600;line-height:1.35;min-height:110px;transition:border-color .3s}
+  .slogcat .slog:hover{border-color:var(--violet-2)}
+  .slogcat .slog .src{display:block;font-size:0.62rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:14px;font-weight:400;font-family:var(--mono)}
+
+  .final{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px}
+  .final .sym{width:130px;height:130px;margin-bottom:26px;opacity:0;transition:opacity 1s ease}
+  .final .sym svg{width:100%;height:100%}
+  .final h2{font-size:clamp(2.4rem,8vw,5rem);font-weight:800;letter-spacing:-2px}
+  .final h2 .x{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic}
+  .final .fs{color:var(--gray);letter-spacing:3px;text-transform:uppercase;font-size:0.9rem;margin-top:22px;font-weight:300}
+  .final .tag2{margin-top:50px;color:var(--muted);letter-spacing:4px;text-transform:uppercase;font-size:0.72rem}
+
+  footer{padding:40px;text-align:center;color:var(--muted);font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;font-family:var(--mono);border-top:1px solid var(--line)}
+
+  .count{font-family:var(--mono);font-size:2.4rem;font-weight:700;color:var(--violet-2)}
+
+  .numrow{display:flex;gap:40px;flex-wrap:wrap}
+  .numrow .n{flex:1;min-width:140px}
+  .numrow .n .nb{font-size:2.6rem;font-weight:800}
+  .numrow .n .nb .x{color:var(--violet-2)}
+  .numrow .n .lbl{color:var(--muted);font-size:0.76rem;letter-spacing:2px;text-transform:uppercase;margin-top:6px}
+
+  /* ===== CAMADA DE ANIMAÇÃO — MOVIMENTO CONTÍNUO SEM CONFLITO ===== */
+  .stack .node:not(:last-child)::after{animation:flowArrow 2.4s ease-in-out infinite}
+  @keyframes flowArrow{0%{opacity:0;transform:translate(-50%,-8px)}35%{opacity:1}100%{opacity:0;transform:translate(-50%,8px)}}
+  .stack .node{animation:nodePulse 3.4s ease-in-out infinite}
+  .stack .node:nth-child(2){animation-delay:.55s}.stack .node:nth-child(3){animation-delay:1.1s}
+  .stack .node:nth-child(4){animation-delay:1.65s}.stack .node:nth-child(5){animation-delay:2.2s}
+  .stack .node:nth-child(6){animation-delay:2.75s}
+  @keyframes nodePulse{0%,100%{box-shadow:0 0 0 0 rgba(123,92,255,0);transform:translateX(0)}50%{box-shadow:0 12px 34px rgba(123,92,255,.5);transform:translateX(6px)}}
+  .stack .node.hl{animation:coreGlow 2.6s ease-in-out infinite}
+  @keyframes coreGlow{0%,100%{box-shadow:0 0 24px rgba(255,61,154,.5);transform:scale(1)}50%{box-shadow:0 0 56px rgba(255,61,154,.95);transform:scale(1.05)}}
+
+  .dna .item::after{content:'';display:block;width:34px;height:2px;margin:14px auto 0;background:var(--grad);border-radius:2px;animation:linePulse 2.8s ease-in-out infinite}
+  @keyframes linePulse{0%,100%{width:20px;opacity:.35}50%{width:60px;opacity:1}}
+
+  .extend .row .tag{position:relative;display:inline-flex;align-items:center;gap:2px}
+  .extend .row .tag::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--grad);border-radius:2px;transform:scaleX(0);transform-origin:left;animation:energyLine 3.2s ease-in-out infinite}
+  @keyframes energyLine{0%{transform:scaleX(0);opacity:0}35%{opacity:1}75%{transform:scaleX(1);opacity:.15}100%{transform:scaleX(1);opacity:0}}
+
+  .slogcat .slog{position:relative;overflow:hidden}
+  .slogcat .slog::before{content:'';position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,61,154,0.16),transparent);transform:skewX(-20deg);animation:shine 4.5s ease-in-out infinite}
+  @keyframes shine{0%{left:-80%}55%{left:135%}100%{left:135%}}
+
+  h2.sec span{display:inline-block;position:relative;background:linear-gradient(100deg,#FF3D9A,#7B5CFF,#FF3D9A);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradShift 5s ease-in-out infinite}
+  @keyframes gradShift{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+
+  .gsteps span.on{animation:stepGlow 2.8s ease-in-out infinite}
+  @keyframes stepGlow{0%,100%{box-shadow:0 0 0 0 rgba(123,92,255,0);transform:scale(1)}50%{box-shadow:0 0 26px rgba(123,92,255,.6);transform:scale(1.06)}}
+
+  .manifesto h2 strong,.manifesto .x{animation:textGlow 3s ease-in-out infinite}
+  @keyframes textGlow{0%,100%{text-shadow:0 0 14px rgba(255,61,154,.25)}50%{text-shadow:0 0 40px rgba(255,61,154,.65)}}
+
+  .numrow .n .nb{animation:numBreath 2.6s ease-in-out infinite}
+  .numrow .n:nth-child(2) .nb{animation-delay:.4s}.numrow .n:nth-child(3) .nb{animation-delay:.8s}
+  .numrow .n:nth-child(4) .nb{animation-delay:1.2s}
+  @keyframes numBreath{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.96)}}
+
+  .btn,.pillar,.logocard,.concept,.dna .item,.slogcat .slog,.gsteps span,.nav a{transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease,border-color .5s ease,color .3s ease}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(255,61,154,0.4)}
+  .pillar:hover,.logocard:hover,.concept:hover,.dna .item:hover{transform:translateY(-6px);border-color:rgba(255,61,154,0.55);box-shadow:0 20px 50px rgba(123,92,255,0.25)}
+  .slogcat .slog:hover{transform:translateY(-4px)}
+  .gsteps span:hover{transform:scale(1.07);border-color:var(--magenta)}
+  .nav a:hover{color:var(--magenta)}
+
+  /* Legibilidade mobile: fundo mais sutil e discreto */
+  @media (max-width:820px){
+    #flow{opacity:.55}
+    .aurora{opacity:.18}
+    .beam{opacity:.45}
+    .hdash{opacity:.12}
+    .void{background:radial-gradient(120% 90% at 50% 0%,transparent 20%,rgba(0,0,0,0.82) 100%)}
+  }
+
+  /* ===== ADAPTAÇÃO MOBILE 100% — leitura e encaixe em qualquer tela ===== */
+  @media (max-width:820px){
+    html,body{overflow-x:hidden}
+    html{font-size:15px}
+    *{overflow-wrap:anywhere}
+    section{padding:70px 5vw;min-height:auto}
+    #reveal{padding-top:215px}
+    .container{max-width:100%;width:100%}
+    nav{padding:14px 18px;gap:8px;flex-wrap:wrap;justify-content:space-between}
+    .nav-links{gap:8px 12px;flex-wrap:wrap;justify-content:flex-end;order:2;width:100%;border-top:1px solid var(--line);padding-top:10px;margin-top:4px}
+    .nav-links a{font-size:0.66rem;letter-spacing:1px;padding:2px 0}
+    .nav-brand{font-size:0.92rem}
+    h1.feat{font-size:clamp(1.9rem,7vw,2.6rem);letter-spacing:-1px;line-height:1.1}
+    h2.sec{font-size:clamp(1.45rem,5.8vw,2rem);line-height:1.15}
+    .lead{font-size:1rem;max-width:100%;line-height:1.6}
+    .kick{font-size:0.66rem;letter-spacing:2.5px;gap:8px}
+    .kick,.sec,h2,h3,p{text-wrap:balance}
+    .bigline{font-size:clamp(1.4rem,5.5vw,1.9rem)}
+    .rv{transform:translateY(22px) scale(.99)}
+    .btn{padding:14px 26px;font-size:0.74rem;letter-spacing:1.5px}
+    .grid2,.grid3,.two,.voice,.dna,.logos,.concepts,.eco{grid-template-columns:1fr}
+    .pillar,.concept,.two .col,.dna .item,.voice .v,.logocard{padding:20px 16px}
+    .anatom{flex-wrap:wrap}
+    .anatom .let{width:auto;min-width:96px;min-height:84px;padding:12px 8px;flex:1 1 96px}
+    .anatom .let .char{font-size:1.5rem}
+    .anatom .let .word{font-size:0.5rem;letter-spacing:0.3px;line-height:1.25;white-space:normal;overflow-wrap:break-word;word-break:break-word}
+    .numrow{gap:14px}
+    .numrow .n{min-width:44%;flex:1 1 44%}
+    .numrow .n .nb{font-size:2rem}
+    .symbol{gap:22px;flex-direction:column;align-items:center;text-align:center}
+    .symbol > div{max-width:100%;width:100%}
+    .symbol .glyph{width:156px;height:156px}
+    .stack .node{letter-spacing:2px;font-size:0.82rem;padding:15px;width:min(540px,92vw)}
+    .slogcat .items{grid-template-columns:1fr}
+    .slogcat .slog{padding:18px 16px;font-size:1.02rem;min-height:auto}
+    .extend .row{padding:15px 4px;gap:8px}
+    .extend .row > span:last-child{font-size:0.95rem}
+    .rgcard{padding:20px 16px}
+    .rgcard::after{font-size:4rem}
+    .rg-nome{font-size:0.66rem;letter-spacing:1px}
+    .rg-num{font-size:1rem;letter-spacing:0.3px;flex-wrap:wrap;gap:2px;justify-content:flex-start}
+    .manifesto h2{font-size:clamp(1.55rem,6.2vw,2.1rem);line-height:1.3}
+    .manifesto .lang{letter-spacing:2px;font-size:0.62rem}
+    .final h2{font-size:clamp(1.9rem,13vw,2.6rem)}
+    .final .fs{font-size:0.78rem;letter-spacing:2px}
+    .final .tag2{font-size:0.66rem;letter-spacing:3px}
+    .final .sym{width:110px;height:110px}
+    footer{padding:26px 16px;font-size:0.64rem;letter-spacing:2px;line-height:1.8}
+    .count{font-size:1.9rem}
+    .mapwrap{padding:8px}
+    .typebar{font-size:0.72rem;letter-spacing:1px}
+    .gsteps span{font-size:0.74rem;padding:7px 14px}
+    .logos{grid-template-columns:repeat(2,1fr)}
+    .logocard{min-height:120px}
+    .portal{width:150px;height:150px}
+  }
+  @media (max-width:480px){
+    html{font-size:14px}
+    .logos,.eco{grid-template-columns:1fr}
+    .portal{width:132px;height:132px}
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="hdash d1"></div>
+<div class="hdash d2"></div>
+<div class="hdash d3"></div>
+<div class="beam b1"></div>
+<div class="beam b2"></div>
+<div class="beam b3"></div>
+<div class="beam b4"></div>
+<div class="aurora"></div>
+<div class="void"></div>
+<canvas id="flow"></canvas>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-brand">Arken<span class="x">X</span></div>
+  <div class="nav-links">
+    <a href="#reveal">Reveal</a>
+    <a href="#nome">Nome</a>
+    <a href="#forca">Força</a>
+    <a href="#slogans">Slogans</a>
+    <a href="#identidade">Identidade</a>
+    <a href="#dna">DNA</a>
+    <a href="#ecossistema">Ecossistema</a>
+    <a href="#global">Global</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- 01 REVEAL DO NOME -->
+<section id="reveal">
+  <div class="container" style="text-align:center">
+    <div class="rv"><div class="kick" style="justify-content:center">Revelação da Marca · 2026</div></div>
+    <h1 class="feat rv" style="font-weight:300;color:var(--gray);margin-bottom:10px">Em quem estamos nos tornando?</h1>
+    <div id="revealName" style="margin-top:26px;min-height:110px"></div>
+    <div class="portal" id="revealPortal">
+      <svg viewBox="0 0 220 220" fill="none">
+        <defs><linearGradient id="akArch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A18BFF"/><stop offset="1" stop-color="#FF3D9A"/></linearGradient></defs>
+        <path d="M62 148 V94 A48 48 0 0 1 158 94 V148" stroke="url(#akArch)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="62" y1="148" x2="158" y2="148" stroke="url(#akArch)" stroke-width="4" stroke-linecap="round"/>
+        <rect x="74" y="98" width="72" height="7" rx="3.5" fill="url(#akArch)" opacity="0.9">
+          <animate attributeName="opacity" values="0.3;1;0.3" dur="2.6s" repeatCount="indefinite"/>
+        </rect>
+        <circle cx="110" cy="118" r="5" fill="#fff">
+          <animate attributeName="r" values="4;6;4" dur="2.6s" repeatCount="indefinite"/>
+        </circle>
+        <line x1="70" y1="170" x2="150" y2="170" stroke="url(#akArch)" stroke-width="2" opacity="0.4" stroke-dasharray="2 8">
+          <animate attributeName="stroke-dashoffset" from="0" to="20" dur="1.2s" repeatCount="indefinite"/>
+        </line>
+      </svg>
+    </div>
+    <div class="typebar rv" id="revealType"></div>
+    <div class="rv" style="margin-top:50px"><a class="btn ghost" href="#nome">Explorar o significado</a></div>
+  </div>
+</section>
+
+<!-- 02 O NOME -->
+<section id="nome">
+  <div class="container">
+    <div class="kick rv">02 — O Nome</div>
+    <h2 class="sec rv">O nome é a <span>promessa</span>.</h2>
+    <div class="row" style="display:flex;flex-wrap:wrap;gap:40px;align-items:center">
+      <div style="flex:1.4;min-width:280px">
+        <p class="lead rv"><strong style="color:var(--white)">Arken X</strong> não foi escolhido para soar como o nome de uma empresa.</p>
+        <p class="lead rv" style="margin-top:16px">Foi construído para funcionar como o nome de uma <strong style="color:var(--white)">marca de tecnologia global</strong>.</p>
+        <div class="numrow rv" style="margin-top:40px">
+          <div class="n"><div class="nb"><span class="count" data-to="6">0</span>/6</div><div class="lbl">Letras de impacto</div></div>
+          <div class="n"><div class="nb"><span class="x">2</span>×</div><div class="lbl">Sílabas fortes</div></div>
+          <div class="n"><div class="nb">IA<sup style="font-size:0.5em">X</sup></div><div class="lbl">Núcleo de negócio</div></div>
+        </div>
+      </div>
+      <div style="flex:1.4;min-width:280px">
+        <div class="anatom rv" id="anatom">
+          <div class="let"><div class="char">A</div><div class="word">Arquitetura</div></div>
+          <div class="let"><div class="char">R</div><div class="word">Rede</div></div>
+          <div class="let"><div class="char">K</div><div class="word">Conhecimento</div></div>
+          <div class="let"><div class="char">E</div><div class="word">Expansão</div></div>
+          <div class="let"><div class="char">N</div><div class="word">Núcleo</div></div>
+          <div class="let"><div class="char">X</div><div class="word">eXpansão<br>Variável</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 POR QUE ESTE NOME -->
+<section>
+  <div class="container">
+    <div class="kick rv">03 — Por que este nome</div>
+    <h2 class="sec rv">Por que <span style="color:var(--white)">Arken X</span>?</h2>
+    <div class="grid3" style="margin-top:30px">
+      <div class="pillar rv"><div class="num">ORIGEM</div><h3>Arca + Arquitetura</h3><p>De <em>ark</em> — a arca que carrega o essencial através do tempo — somado à idéia de arquitetura: o desenho de estruturas que sustentam o futuro.</p></div>
+      <div class="pillar rv"><div class="num">FONÉTICA</div><h3>Duas sílabas</h3><p>Arken é curto, seco e de pronúncia natural em português, inglês e espanhol. O "X" final dá presença e um ponto visual de memorização imediato.</p></div>
+      <div class="pillar rv"><div class="num">CONCEITO</div><h3>O arco do futuro</h3><p>Arken é a estrutura que une dois lados: o hoje e o amanhã, o dado e a decisão — um portal por onde toda inovação atravessa.</p></div>
+      <div class="pillar rv"><div class="num">ASSOCIAÇÃO</div><h3>Inteligência</h3><p>A sonoridade converge para "conhecimento" e "arquitetura", ainda que por associação. Um <strong>significado de marca</strong> — construído pela marca, não uma etimologia histórica.</p></div>
+      <div class="pillar rv"><div class="num">FUTURO &amp; ESCALA</div><h3>Não limita</h3><p>O nome não prende a empresa a um único produto. Ele comporta IA, nuvem, dados, sistemas e o que ainda não existe — como toda marca de escala.</p></div>
+      <div class="pillar rv"><div class="num">SENSAÇÃO</div><h3>Preciso e global</h3><p>Transmite solidez, engenharia e potência. Soa como o nome de um laboratório de inteligência — necessário, limpo e pronto para o mundo.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 FORÇA -->
+<section id="forca">
+  <div class="container">
+    <div class="kick rv">04 — Por que é forte</div>
+    <h2 class="sec rv">Por que é <span>forte</span>?</h2>
+    <div class="grid3" style="margin-top:30px">
+      <div class="pillar rv"><div class="num">01</div><h3>Memorável</h3><p>Curto, duas sílabas, pontuado pelo X. Fica na memória após a primeira leitura.</p></div>
+      <div class="pillar rv"><div class="num">02</div><h3>Distintivo</h3><p>Identidade sonora própria, sem colidir com marcas conhecidas do setor.</p></div>
+      <div class="pillar rv"><div class="num">03</div><h3>Tecnológico</h3><p>Fonética compatível com IA, software e infraestrutura. Parece tecnologia.</p></div>
+      <div class="pillar rv"><div class="num">04</div><h3>Global</h3><p>Pronunciável em várias línguas, com grafia estável e presença internacional.</p></div>
+      <div class="pillar rv"><div class="num">05</div><h3>Escalável</h3><p>Comporta toda a linha: IA, Nuvem, Dados, Inteligência. Nunca fica apertado.</p></div>
+      <div class="pillar rv"><div class="num">06</div><h3>Marcável</h3><p>Permite um símbolo forte, uma identidade visual limpa e uma linguagem de movimento reconhecível.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 POSICIONAMENTO -->
+<section>
+  <div class="container" style="text-align:center">
+    <div class="kick rv" style="justify-content:center">05 — Posicionamento</div>
+    <h2 class="sec rv"><span style="color:var(--white)">Arken X</span> não é apenas uma empresa de tecnologia.</h2>
+    <div class="lead rv" style="margin:0 auto"><strong style="color:var(--magenta)">É uma empresa de inteligência.</strong></div>
+    <div class="stack rv" style="margin-top:60px" id="stack">
+      <div class="node">Tecnologia</div>
+      <div class="node">Dados</div>
+      <div class="node">Inteligência</div>
+      <div class="node">Automação</div>
+      <div class="node">Decisão</div>
+      <div class="node hl">Impacto</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 SLOGANS -->
+<section id="slogans">
+  <div class="container">
+    <div class="kick rv">06 — Slogans</div>
+    <h2 class="sec rv">A voz dos <span>slogans</span></h2>
+    <div class="slogcat rv">
+      <div class="cat">Corporativo</div>
+      <div class="items">
+        <div class="slog">Tecnologia que arquiteta o futuro.<span class="src">Corporativo</span></div>
+        <div class="slog">Inteligência, engenharia e precisão.<span class="src">Corporativo</span></div>
+        <div class="slog">Construído para o que vem depois.<span class="src">Corporativo</span></div>
+      </div>
+    </div>
+    <div class="slogcat rv">
+      <div class="cat">Inteligência Artificial</div>
+      <div class="items">
+        <div class="slog">Inteligência, projetada.<span class="src">IA</span></div>
+        <div class="slog">Onde a inteligência encontra a engenharia.<span class="src">IA</span></div>
+        <div class="slog">Além da tecnologia. Inteligência.<span class="src">IA</span></div>
+      </div>
+    </div>
+    <div class="slogcat rv">
+      <div class="cat">Global &amp; Conceitual</div>
+      <div class="items">
+        <div class="slog">Arquitetos de inteligência para o mundo.<span class="src">Global</span></div>
+        <div class="slog">Do núcleo, para o mundo.<span class="src">Global</span></div>
+        <div class="slog">O arco do futuro.<span class="src">Conceitual · Principal</span></div>
+      </div>
+    </div>
+    <div class="rv" style="margin-top:20px"><a class="btn ghost" href="#identidade">Ver identidade visual</a></div>
+  </div>
+</section>
+
+<!-- 07 IDENTIDADE / LOGOS -->
+<section id="identidade">
+  <div class="container">
+    <div class="kick rv">07 — Sistema de Identidade</div>
+    <h2 class="sec rv">Um sistema de <span>identidade</span></h2>
+    <div class="logos" style="margin-top:30px">
+      <div class="logocard rv"><div class="l1">Arken<span class="x">X</span></div><div class="cap">Logotipo</div></div>
+      <div class="logocard rv"><div class="mono">X</div><div class="cap">Monograma</div></div>
+      <div class="logocard rv"><div class="l2">Arken<span class="x">X</span></div><div class="cap">Serifada · Premium</div></div>
+      <div class="logocard rv"><div class="mono2">X</div><div class="cap">Ícone</div></div>
+      <div class="logocard rv"><div class="l3">ARKEN<span class="x">X</span></div><div class="cap">Estendida</div></div>
+      <div class="logocard rv"><div class="l4">Arken<span class="x">X</span></div><div class="cap">Fina</div></div>
+      <div class="logocard rv"><div class="l5">ARK<span class="x">X</span></div><div class="cap">Vertical</div></div>
+      <div class="logocard rv"><div class="l5">AX</div><div class="cap">Ícone de aplicativo</div></div>
+      <div class="logocard rv"><div class="ng">ArkenX</div><div class="cap">Compacta</div></div>
+      <div class="logocard rv"><div class="nc">A<span class="x">X</span></div><div class="cap">Marca em caixa</div></div>
+      <div class="logocard rv"><div class="ncircle"><span class="x">X</span></div><div class="cap">Emblema</div></div>
+      <div class="logocard rv"><div class="nchar">ARK<span class="x">X</span></div><div class="cap">Sigla</div></div>
+    </div>
+    <div class="rule"></div>
+    <div class="kick rv">Conceitos alternativos</div>
+    <p class="rv muted" style="font-size:0.9rem;max-width:560px;margin-top:8px">Quatro direções possíveis para a marca, do mais icônico ao mais técnico — cada uma construída sobre o mesmo núcleo: o arco.</p>
+    <div class="concepts">
+      <div class="concept rv">
+        <div class="cglyph cg1">
+          <svg viewBox="0 0 220 220" fill="none">
+            <defs><linearGradient id="gc1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A18BFF"/><stop offset="1" stop-color="#FF3D9A"/></linearGradient></defs>
+            <path d="M62 148 V94 A48 48 0 0 1 158 94 V148" stroke="url(#gc1)" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <line x1="62" y1="148" x2="158" y2="148" stroke="url(#gc1)" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="110" cy="118" r="5" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="cname">ARCO</div>
+        <p class="cdesc">O portal que sustenta — uma linha desenhada entre dois lados, unindo origem e destino. Ícone absoluto, funciona sozinho.</p>
+      </div>
+      <div class="concept rv">
+        <div class="cglyph cg2">
+          <svg viewBox="0 0 220 220" fill="none">
+            <defs><linearGradient id="gc2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7B5CFF"/><stop offset="1" stop-color="#FF3D9A"/></linearGradient></defs>
+            <line x1="36" y1="110" x2="184" y2="110" stroke="url(#gc2)" stroke-width="3" stroke-linecap="round"/>
+            <line x1="110" y1="36" x2="110" y2="184" stroke="url(#gc2)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="110" cy="110" r="9" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="cname">NÓ</div>
+        <p class="cdesc">O ponto de interseção — o centro onde todos os caminhos se encontram. Dois eixos formando o coração da estrutura.</p>
+      </div>
+      <div class="concept rv">
+        <div class="cglyph cg3">
+          <svg viewBox="0 0 220 220" fill="none">
+            <defs><linearGradient id="gc3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7B5CFF"/><stop offset="1" stop-color="#FF3D9A"/></linearGradient></defs>
+            <rect x="48" y="48" width="124" height="124" rx="30" fill="url(#gc3)"/>
+            <text x="110" y="130" text-anchor="middle" font-family="inherit" font-size="64" font-weight="800" font-style="italic" fill="#050208">X</text>
+          </svg>
+        </div>
+        <div class="cname">PORTAL</div>
+        <p class="cdesc">Um bloco sólido em gradiente com o X em contraste. Presença tech e corporativa, alto reconhecimento em qualquer tamanho.</p>
+      </div>
+      <div class="concept rv">
+        <div class="cglyph cg4">
+          <svg viewBox="0 0 220 220" fill="none">
+            <defs><linearGradient id="gc4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7B5CFF"/><stop offset="1" stop-color="#FF3D9A"/></linearGradient></defs>
+            <line x1="38" y1="140" x2="150" y2="58" stroke="url(#gc4)" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="158" cy="52" r="14" fill="none" stroke="#FF3D9A" stroke-width="4"/>
+            <circle cx="158" cy="52" r="4" fill="#fff"/>
+            <path d="M40 120 L40 188 Q40 196 48 196 L116 196" stroke="#7B5CFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="cname">VETOR</div>
+        <p class="cdesc">Uma seta diagonal que atravessa a tela terminando em um nó — movimento, avanço e o ponto exato da decisão.</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="kick rv">Símbolo da marca</div>
+    <div class="symbol" style="margin-top:10px">
+      <div class="glyph" id="symbolGlyph">
+        <svg viewBox="0 0 220 220" fill="none">
+          <defs><linearGradient id="akSym" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A18BFF"/><stop offset="1" stop-color="#FF3D9A"/></linearGradient></defs>
+          <path d="M62 150 V94 A48 48 0 0 1 158 94 V150" stroke="url(#akSym)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <line x1="62" y1="150" x2="158" y2="150" stroke="url(#akSym)" stroke-width="4" stroke-linecap="round"/>
+          <rect x="74" y="98" width="72" height="7" rx="3.5" fill="url(#akSym)" opacity="0.9">
+            <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/>
+          </rect>
+          <circle cx="110" cy="118" r="5" fill="#fff">
+            <animate attributeName="r" values="4;6;4" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="60" y1="172" x2="160" y2="172" stroke="url(#akSym)" stroke-width="2" opacity="0.4" stroke-dasharray="2 8">
+            <animate attributeName="stroke-dashoffset" from="0" to="20" dur="1.4s" repeatCount="indefinite"/>
+          </line>
+        </svg>
+      </div>
+      <div style="max-width:380px">
+        <h3 class="rv" style="font-size:1.2rem;margin-bottom:12px">Um símbolo abstrato e proprietário.</h3>
+        <p class="rv muted" style="font-size:0.95rem">Um arco que sustenta — a forma de um portal pelo qual o futuro atravessa. A barra central pulsa como energia viva. Funciona sozinho, sem o nome. Fala de estrutura, núcleo, transição e expansão.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 EXTENSÕES & ESCALA -->
+<section>
+  <div class="container">
+    <div class="kick rv">08 — Escalabilidade</div>
+    <h2 class="sec rv">A marca <span>se expande</span>.</h2>
+    <div class="extend" id="extend" style="margin-top:30px">
+      <div class="row"><span class="tag">ARKEN × IA</span><span>Inteligência artificial</span></div>
+      <div class="row"><span class="tag">ARKEN × NUVEM</span><span>Infraestrutura</span></div>
+      <div class="row"><span class="tag">ARKEN × DADOS</span><span>Análise e dados</span></div>
+      <div class="row"><span class="tag">ARKEN × LAB</span><span>Pesquisa e inovação</span></div>
+      <div class="row"><span class="tag">ARKEN × OS</span><span>Plataforma</span></div>
+      <div class="row"><span class="tag">ARKEN × X</span><span>Núcleo da marca</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 DNA -->
+<section id="dna">
+  <div class="container" style="text-align:center">
+    <div class="kick rv" style="justify-content:center">09 — DNA da Marca</div>
+    <h2 class="sec rv">O DNA da <span>marca</span></h2>
+    <div class="dna" style="margin-top:34px">
+      <div class="item rv">Visionário</div>
+      <div class="item rv">Preciso</div>
+      <div class="item rv">Ousado</div>
+      <div class="item rv">Futuro</div>
+      <div class="item rv">Sofisticado</div>
+      <div class="item rv">Global</div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 PERSONALIDADE -->
+<section>
+  <div class="container">
+    <div class="kick rv">10 — Personalidade</div>
+    <h2 class="sec rv">Personalidade da <span>marca</span></h2>
+    <div class="two" style="margin-top:30px">
+      <div class="col no rv"><h3>Não somos</h3><ul>
+        <li>Genéricos</li><li>Barulhentos</li><li>Complicados</li><li>Ultrapassados</li>
+      </ul></div>
+      <div class="col yes rv"><h3>Somos</h3><ul>
+        <li>Precisos</li><li>Inteligentes</li><li>Elegantes</li><li>Inovadores</li><li>Ambiciosos</li><li>Estruturais</li>
+      </ul></div>
+    </div>
+    <div class="rule"></div>
+    <div class="kick rv">Voz da Marca</div>
+    <div class="voice" style="margin-top:10px">
+      <div class="v rv"><div class="who">Confiança</div>Nós não prometemos. Nós construímos estruturas que entregam.</div>
+      <div class="v rv"><div class="who">Visão</div>A vantagem do futuro não está nos dados. Está na inteligência de arquitetá-los.</div>
+      <div class="v rv"><div class="who">Precisão</div>Menos, com exatidão. Cada linha, cada decisão, por um motivo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 ECOSSISTEMA -->
+<section id="ecossistema">
+  <div class="container">
+    <div class="kick rv">11 — Ecossistema de Tecnologia</div>
+    <h2 class="sec rv">Uma <span>arquitetura</span> de tecnologia</h2>
+    <div class="eco rv" style="margin-top:10px">
+      <div class="mod"><div class="mi">IA</div><div class="mn">Inteligência</div></div>
+      <div class="mod"><div class="mi">DOS</div><div class="mn">Dados</div></div>
+      <div class="mod"><div class="mi">SW</div><div class="mn">Software</div></div>
+      <div class="mod"><div class="mi">AUT</div><div class="mn">Automação</div></div>
+      <div class="mod"><div class="mi">CLD</div><div class="mn">Nuvem</div></div>
+      <div class="mod"><div class="mi">SIS</div><div class="mn">Sistemas</div></div>
+      <div class="mod"><div class="mi">BOT</div><div class="mn">Robôs</div></div>
+      <div class="mod"><div class="mi">ANL</div><div class="mn">Analytics</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 GLOBAL -->
+<section id="global">
+  <div class="container">
+    <div class="kick rv">12 — Potencial Global</div>
+    <h2 class="sec rv">Do Brasil para o <span>mundo</span></h2>
+    <div class="gsteps rv" id="gsteps">
+      <span>Brasil</span><span>LatAm</span><span>EUA</span><span>Europa</span><span>Ásia</span><span>Global</span>
+    </div>
+    <div class="mapwrap rv">
+      <svg id="mapSvg" viewBox="0 0 900 460" fill="none" style="background:#0B0810"></svg>
+    </div>
+    <div class="rv" style="text-align:center;margin-top:34px">
+      <p class="lead" style="margin:0 auto"><strong style="color:var(--white)">Projetado localmente.<br>Construído para o mundo.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- 13 MANIFESTO -->
+<section>
+  <div class="container">
+    <div class="kick rv">13 — Manifesto</div>
+    <div class="manifesto">
+      <h2 class="rv">O mundo está mudando.<br>Os dados estão em toda parte.<br><strong>Inteligência é a diferença.</strong></h2>
+      <h2 class="rv" style="margin-top:-8px;color:var(--gray);font-weight:300">Nós construímos a arquitetura que transforma possibilidade em realidade.</h2>
+      <div class="rv" style="margin-top:36px"><h2 style="color:var(--white)">Isto é <span class="x" style="background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Arken X</span>.</h2></div>
+      <div class="lang rv">O mundo está mudando. Os dados estão em toda parte. Inteligência é a diferença. Construímos a arquitetura que transforma possibilidade em realidade. Isto é Arken X.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 DADOS CORPORATIVOS -->
+<section id="dados">
+  <div class="container" style="text-align:center">
+    <div class="kick rv">14 — Dados Corporativos</div>
+    <h2 class="sec rv">Arken Tecnologia e Inteligência <span>Artificial Ltda.</span></h2>
+
+    <div class="rgcard rv">
+      <div class="rgcard-top">
+        <span class="rgchip">CNPJ</span>
+        <div class="rg-nome">ARKEN TECNOLOGIA E INTELIGÊNCIA ARTIFICIAL LTDA</div>
+        <div class="rg-fantasia">Arken · O arco do futuro</div>
+      </div>
+      <div class="rg-num" aria-label="CNPJ 00.000.000/0001-97">
+        <span>00</span><span>.</span><span>000</span><span>.</span><span>000</span><span>/</span><span>0001</span><span>-</span><span>97</span>
+      </div>
+    </div>
+
+    <div class="grid3" style="margin-top:44px">
+      <div class="pillar rv"><div class="num">RAZÃO SOCIAL</div><h3>Arken Tecnologia e Inteligência Artificial Ltda.</h3><p>Sociedade limitada com sede no Brasil — base de engenharia, IA, software e dados.</p></div>
+      <div class="pillar rv"><div class="num">NOME FANTASIA</div><h3>Arken</h3><p>Marca de tecnologia global. Registrada para plataformas de IA e serviços de dados.</p></div>
+      <div class="pillar rv"><div class="num">INSCRIÇÃO</div><h3>000.000.00-0 · ISENTO</h3><p>Dados ilustrativos para fins de apresentação da marca, não operacionais.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 FINAL -->
+<section class="final" id="final">
+  <div class="sym rv" id="finalSym">
+    <svg viewBox="0 0 220 220" fill="none">
+      <defs><linearGradient id="akFin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A18BFF"/><stop offset="1" stop-color="#FF3D9A"/></linearGradient></defs>
+      <path d="M62 150 V94 A48 48 0 0 1 158 94 V150" stroke="url(#akFin)" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <line x1="62" y1="150" x2="158" y2="150" stroke="url(#akFin)" stroke-width="4" stroke-linecap="round"/>
+      <rect x="74" y="98" width="72" height="7" rx="3.5" fill="url(#akFin)" opacity="0.9">
+        <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <circle cx="110" cy="118" r="5" fill="#fff">
+        <animate attributeName="r" values="4;6;4" dur="3s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+  <h2 class="rv">ARKEN<span class="x">X</span></h2>
+  <div class="fs rv">O arco do futuro</div>
+  <div class="tag2 rv">A próxima era é inteligente.</div>
+  <div class="rv" style="margin-top:50px"><a class="btn" href="#reveal">Replay</a></div>
+</section>
+
+<footer>Arken X · Revelação da Marca · Inteligência × Tecnologia × Futuro × Escala</footer>
+
+</div>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ============ FLUXO HORIZONTAL (feixes laterais, SEM órbitas) ============ */
+  (function(){
+    var c=document.getElementById('flow');if(!c)return;
+    var x=c.getContext('2d');var w,h;var drops=[];
+    function rs(){
+      var d=Math.min(window.devicePixelRatio||1,1.5);
+      c.width=innerWidth*d;c.height=innerHeight*d;
+      c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';
+      x.setTransform(d,0,0,d,0,0);w=innerWidth;h=innerHeight;seed();
+    }
+    function seed(){
+      drops=[];
+      var n=reduced?14:Math.min(46,Math.floor(w*h/36000));
+      for(var i=0;i<n;i++){
+        var violet=Math.random()<0.55;
+        drops.push({
+          y:0.05+Math.random()*0.9,        // faixa horizontal fixa
+          x:Math.random(),                  // progresso lateral
+          v:0.0006+Math.random()*0.0018,    // velocidade lateral
+          len:8+Math.random()*22,           // comprimento do rastro
+          ph:Math.random()*6.28,            // fase da ondulação
+          amp:1.5+Math.random()*4,          // amplitude da onda
+          violet:violet,
+          a:0.10+Math.random()*0.28
+        });
+      }
+    }
+    addEventListener('resize',rs);
+    function draw(ts){
+      x.clearRect(0,0,w,h);
+      var st=performance.now()/1000;
+      for(var i=0;i<drops.length;i++){var p=drops[i];
+        p.x+=p.v;
+        if(p.x>1.08){p.x=-0.08;p.y=0.05+Math.random()*0.9;}
+        var px=p.x*w;
+        var py=(p.y*h)+Math.sin(st*0.8+p.ph)*p.amp;
+        var col=p.violet?'rgba(161,139,255,'+p.a+')':'rgba(255,61,154,'+p.a+')';
+        var gl=p.violet?'rgba(123,92,255,'+(p.a*0.5)+')':'rgba(255,61,154,'+(p.a*0.5)+')';
+        x.strokeStyle=gl;x.lineWidth=1;
+        x.beginPath();x.moveTo(px,py);x.lineTo(px-p.len,py);x.stroke();
+        x.fillStyle=col;
+        x.beginPath();x.arc(px,py,1.6,0,6.28);x.fill();
+      }
+      if(!reduced)requestAnimationFrame(draw);
+    }
+    rs();
+    if(reduced){x.clearRect(0,0,w,h);draw(performance.now());}
+    else requestAnimationFrame(draw);
+  })();
+
+  /* ============ NAV ============ */
+  (function(){
+    var nav=document.getElementById('nav');if(nav)nav.classList.add('show');
+  })();
+
+  /* ============ OBSERVERS ============ */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}})},{threshold:0.18});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  setTimeout(function(){
+    document.querySelectorAll('.rv:not(.on)').forEach(function(r){r.classList.add('on');});
+  },2600);
+
+  /* reveal de letras do nome principal + portal + digitação */
+  (function(){
+    var sec=document.getElementById('reveal');if(!sec)return;
+    var t=document.getElementById('revealName');
+    var portal=document.getElementById('revealPortal');
+    var tb=document.getElementById('revealType');
+    var done=false;
+    var msgs=[
+      'O arco do futuro — inteligência, precisão e escala.',
+      'Inteligência × Tecnologia × Futuro × Escala.',
+      'Construído para a próxima era.'
+    ];
+    function build(){
+      var name='ARKEN';
+      name.split('').forEach(function(ch){var s=document.createElement('span');s.className='lr';s.textContent=ch;s.style.fontSize='clamp(2.8rem,9vw,7rem)';s.style.fontWeight='800';s.style.letterSpacing='-3px';t.appendChild(s);});
+      var xS=document.createElement('span');xS.className='lr';xS.textContent='X';xS.style.fontSize='clamp(2.8rem,9vw,7rem)';xS.style.fontWeight='800';xS.style.fontStyle='italic';
+      xS.style.background='var(--grad)';xS.style.webkitBackgroundClip='text';xS.style.backgroundClip='text';xS.style.webkitTextFillColor='transparent';t.appendChild(xS);
+      t.classList.add('lrin');
+      t.querySelectorAll('.lr').forEach(function(s,i){s.style.animationDelay=(i*0.12+0.25)+'s';});
+      setTimeout(function(){
+        portal.style.transition='opacity 1s ease,transform 1.4s cubic-bezier(.16,1,.3,1)';
+        portal.classList.add('show');
+      },500);
+      setTimeout(function(){ typeLoop(0); }, 2400);
+    }
+    function typeMsg(txt,fn){
+      var i=0;tb.textContent='';
+      (function step(){
+        tb.textContent+=txt[i];
+        i++;
+        if(i<txt.length){setTimeout(step,22);}else{var cr=document.createElement('span');cr.className='cr';tb.appendChild(cr);setTimeout(fn,2600);}
+      })();
+    }
+    function typeLoop(n){
+      typeMsg(msgs[n],function(){ typeLoop((n+1)%msgs.length); });
+    }
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!done){done=true;build();io.unobserve(e.target);}})},{threshold:.35});
+    io.observe(sec);
+  })();
+
+  /* count up */
+  (function(){
+    var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run(e.target);io2.unobserve(e.target);}})},{threshold:.6});
+    function run(el){var to=+el.getAttribute('data-to');var t0=null;
+      function step(ts){if(!t0)t0=ts;var pr=Math.min(1,(ts-t0)/1400);el.textContent=Math.round(pr*to);if(pr<1)requestAnimationFrame(step);}
+      requestAnimationFrame(step);}
+    document.querySelectorAll('.count').forEach(function(el){io2.observe(el);});
+  })();
+
+  /* extensões */
+  (function(){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.row').forEach(function(r,i){r.style.transitionDelay=(i*0.12)+'s';r.style.opacity='1';r.style.transform='none';});io.unobserve(e.target);}})},{threshold:.2});
+    var el=document.getElementById('extend');if(el)io.observe(el);
+  })();
+
+  /* stack nodes */
+  (function(){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.node').forEach(function(n,i){n.style.opacity='0';n.style.transform='translateY(14px)';setTimeout(function(){n.style.transition='opacity .6s ease,transform .6s ease';n.style.opacity='1';n.style.transform='none';},i*220);});io.unobserve(e.target);}})},{threshold:.3});
+    var st=document.getElementById('stack');if(st)io.observe(st);
+  })();
+
+  /* gsteps globais */
+  (function(){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('span').forEach(function(s,i){setTimeout(function(){s.classList.add('on');},i*450);});io.unobserve(e.target);}})},{threshold:.4});
+    var g=document.getElementById('gsteps');if(g)io.observe(g);
+  })();
+
+  /* ============ MAPA-MÚNDI + partículas ============ */
+  (function(){
+    var svg=document.getElementById('mapSvg');if(!svg)return;
+    var NS='http://www.w3.org/2000/svg';
+    var cities=[["Brasil",455,300],["LatAm",390,290],["EUA",330,205],["Europa",470,160],["Ásia",600,175],["Global",430,300]];
+    var shapes=[["BR",430,280,46,26],["AM",320,120,70,70],["EU",460,140,70,50],["AS",600,150,110,80]];
+    shapes.forEach(function(s){
+      var r=document.createElementNS(NS,'rect');
+      r.setAttribute('x',s[1]);r.setAttribute('y',s[2]);r.setAttribute('width',s[3]);r.setAttribute('height',s[4]);
+      r.setAttribute('fill','#110C1A');r.setAttribute('stroke','#261A38');r.setAttribute('stroke-width','1.2');
+      r.setAttribute('rx','5');
+      svg.appendChild(r);});
+    cities.forEach(function(c){
+      var g=document.createElementNS(NS,'circle');
+      g.setAttribute('cx',c[1]);g.setAttribute('cy',c[2]);g.setAttribute('r','3.5');g.setAttribute('fill','#FF3D9A');
+      g.style.filter='drop-shadow(0 0 6px #FF3D9A)';
+      svg.appendChild(g);
+      var t=document.createElementNS(NS,'text');
+      t.setAttribute('x',c[1]+8);t.setAttribute('y',c[2]+3);t.setAttribute('fill','#A9A4C0');
+      t.setAttribute('font-size','9');t.setAttribute('font-family','Consolas');t.textContent=c[0];
+      svg.appendChild(t);});
+    var paths=[[[330,205],[455,300]],[[455,300],[600,175]],[[600,175],[470,160]],[[470,160],[330,205]]];
+    var trav=[];
+    for(var i=0;i<6;i++){var c2=document.createElementNS(NS,'circle');
+      c2.setAttribute('r','1.8');c2.setAttribute('fill','#7B5CFF');c2.style.opacity='0.8';
+      svg.appendChild(c2);
+      trav.push({el:c2,p:paths[i%paths.length],t:Math.random(),sp:0.004+Math.random()*0.004});}
+    function move(){
+      trav.forEach(function(t){
+        t.t+=t.sp;if(t.t>1)t.t-=1;
+        var p=t.p,p1=p[0],p2=p[1];
+        var px=p1[0]+(p2[0]-p1[0])*t.t, py=p1[1]+(p2[1]-p1[1])*t.t;
+        t.el.setAttribute('cx',px);t.el.setAttribute('cy',py);
+      });
+      if(!reduced)setTimeout(move,30);
+    }
+    move();
+  })();
+
+  /* animação final: fade in */
+  (function(){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.rv').forEach(function(r){r.classList.add('on');});e.target.querySelector('.sym').style.opacity='1';io.unobserve(e.target);}})},{threshold:.3});
+    var fin=document.getElementById('final');if(fin)io.observe(fin);
+  })();
+})();
+</script>
+</body>
+</html>
